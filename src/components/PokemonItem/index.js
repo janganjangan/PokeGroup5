@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Animated, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, TouchableOpacity, Image } from 'react-native';
 import {
     IC_RED_POKEBALL as RedPokeball,
     IC_BLUE_POKEBALL as BluePokeball,
     IC_YELLOW_POKEBALL as YellowPokeBall
-} from '../assets'
-import { GREATBALL_TYPE, ULTRABALL_TYPE } from '../constants';
-import { randomWithRange } from '../utility/RandomUtil';
+} from '../../assets'
+import { GREATBALL_TYPE, ULTRABALL_TYPE } from '../../constants';
+import { randomWithRange } from '../../utility/RandomUtil';
 
 const PokemonItem = ({ pokemonType }) => {
 

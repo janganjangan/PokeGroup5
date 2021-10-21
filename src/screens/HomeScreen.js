@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { FlatList, SafeAreaView, StyleSheet, Platform } from 'react-native'
-import PokemonItem from './PokemonItem';
+import { PokemonItem } from '../components';
 import { randomWithRange } from '../utility/RandomUtil';
 import { MINIMUM_POKEBALL_TYPE, MAXIMUM_POKEBALL_TYPE } from '../constants';
 
