@@ -4,12 +4,9 @@ import {
     IC_YELLOW_POKEBALL as YellowPokeBall
 } from '../../assets'
 
-const Greatball = () => {
-
-    return (
-        <Image style={styles.pokeballImage} source={YellowPokeBall} />
-    )
-}
+const Greatball = () => (
+    <Image style={styles.pokeballImage} source={YellowPokeBall} />
+)
 
 export default Greatball;
 
