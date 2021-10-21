@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { Button, FlatList, Platform, Dimensions, StyleSheet, View, TouchableOpacity, Text } from 'react-native'
+import { FlatList, Platform, StyleSheet, View, TouchableOpacity, Text } from 'react-native'
 import { useRoute } from '@react-navigation/core';
 import { useNavigation } from '@react-navigation/core'
+import { CommonActions } from '@react-navigation/native';
 import _ from 'lodash';
 
 import ScreenName from '../navigation/ScreenName';
@@ -49,9 +50,20 @@ const PokeballScreen = () => {
 
     const goToPokedexScreen = () => {
         const mappedPokemonIds = randomNumbers.map(item => item.pokemonId);
-        navigation.navigate(ScreenName.PokedexScreen, {
-            listPokemonIds: mappedPokemonIds
-        })
+        navigation.dispatch(CommonActions.reset({
+            index: 1,
+            routes: [
+                {
+                    name: ScreenName.HomeScreen,
+                },
+                {
+                    name: ScreenName.PokedexScreen,
+                    params: {
+                        listPokemonIds: mappedPokemonIds
+                    }
+                }
+            ]
+        }))
     }
 
     return (

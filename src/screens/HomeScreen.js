@@ -9,7 +9,7 @@ const HomeScreen = () => {
 
     const handleOnPress = () => {
         navigation.navigate(ScreenName.PokeballScreen, {
-            numOfItems: 10
+            numOfItems: 1
         })
     }
 
