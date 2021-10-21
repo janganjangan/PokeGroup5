@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import type {Node} from 'react';
+import { Node } from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -21,12 +21,12 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './src/screens/HomeScreen';
 
-const App: () => Node = () => {
+const App = () => {
 
   return (
     <SafeAreaView>
       <NavigationContainer>
-        <HomeScreen/>
+        <HomeScreen numOfItems={5} />
       </NavigationContainer>
     </SafeAreaView>
   );
