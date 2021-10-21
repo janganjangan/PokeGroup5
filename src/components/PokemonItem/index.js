@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, TouchableOpacity, Image } from 'react-native';
-import {
-    IC_RED_POKEBALL as RedPokeball,
-    IC_BLUE_POKEBALL as BluePokeball,
-    IC_YELLOW_POKEBALL as YellowPokeBall
-} from '../../assets'
 import { GREATBALL_TYPE, ULTRABALL_TYPE } from '../../constants';
 import { randomWithRange } from '../../utility/RandomUtil';
+import { Pokeball, Greatball, Ultraball } from '../';
 
 const PokemonItem = ({ pokemonType }) => {
 
@@ -28,17 +24,21 @@ const PokemonItem = ({ pokemonType }) => {
         setPokemonId(randomPokemonId);
     }, []);
 
+    const renderPokeball = () => {
+        switch (pokemonType) {
+            case GREATBALL_TYPE:
+                return <Greatball />
+            case ULTRABALL_TYPE:
+                return <Ultraball />
+            default:
+                return <Pokeball />
+        }
+    }
+
     return (
         <TouchableOpacity style={styles.container}>
             {/* <Animated.View style={[{ transform: [{ translateY: animated }] }]}> */}
-            {
-                pokemonType === GREATBALL_TYPE ? (
-                    <Image style={styles.pokeballImage} source={BluePokeball} />
-                ) : pokemonType === ULTRABALL_TYPE ? (
-                    <Image style={styles.pokeballImage} source={YellowPokeBall} />
-                ) :
-                    <Image style={styles.pokeballImage} source={RedPokeball} />
-            }
+            {renderPokeball()}
             {/* </Animated.View> */}
         </TouchableOpacity>
     )
@@ -52,9 +52,5 @@ const styles = StyleSheet.create({
         flex: 1 / 2,
         justifyContent: 'center',
         alignItems: 'center',
-    },
-    pokeballImage: {
-        width: 100,
-        height: 100
     }
 })
