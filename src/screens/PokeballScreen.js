@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button, FlatList, Platform, SafeAreaView, StyleSheet, View } from 'react-native'
+import { Button, FlatList, Platform, Dimensions, StyleSheet, View, TouchableOpacity, Text } from 'react-native'
 import { useRoute } from '@react-navigation/core';
 import { useNavigation } from '@react-navigation/core'
 import _ from 'lodash';
@@ -55,7 +55,7 @@ const PokeballScreen = () => {
     }
 
     return (
-        <SafeAreaView style={styles.container}>
+        <View style={styles.container}>
             <View>
                 <FlatList
                     data={randomNumbers}
@@ -72,16 +72,14 @@ const PokeballScreen = () => {
                     }}
                     keyExtractor={(item) => item.id}
                 />
-                {
-                    btnResultVisibility &&
-                    <Button
-                        style={styles.btnResult}
-                        title={'View Pokedex'}
-                        onPress={goToPokedexScreen}
-                    />
-                }
             </View>
-        </SafeAreaView>
+            {
+                btnResultVisibility &&
+                <TouchableOpacity activeOpacity={.5} style={styles.btnResultContainer} onPress={goToPokedexScreen}>
+                    <Text style={styles.textResult}>View Pokedex</Text>
+                </TouchableOpacity>
+            }
+        </View>
     )
 }
 
@@ -90,9 +88,24 @@ export default PokeballScreen
 const styles = StyleSheet.create({
     container: {
         marginTop: 20,
+        flex: 1,
         paddingTop: Platform.OS === 'ios' ? '20' : 0
     },
-    btnResult: {
-        position: 'absolute'
+    btnResultContainer: {
+        borderWidth: 1,
+        borderColor: 'rgba(0,0,0,0.2)',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: 150,
+        position: 'absolute',
+        bottom: 16,
+        right: 16,
+        backgroundColor: '#113CFC',
+        borderRadius: 12,
+        paddingVertical: 12,
+        paddingHorizontal: 8,
+    },
+    textResult: {
+        color: '#fff'
     }
 })

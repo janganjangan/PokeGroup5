@@ -54,9 +54,7 @@ const PokemonItem = ({ pokemonType, onPokemonItemClicked, id }) => {
         <View style={styles.container}>
             {
                 imageUri !== '' ? renderPokemonImage() :
-                    <TouchableOpacity
-                        onPress={onPressPokeball}
-                    >
+                    <TouchableOpacity onPress={onPressPokeball}>
                         {renderPokeball()}
                     </TouchableOpacity>
             }
