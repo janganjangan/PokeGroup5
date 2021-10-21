@@ -89,6 +89,7 @@ const styles = StyleSheet.create({
     container: {
         marginTop: 20,
         flex: 1,
+        paddingBottom: 40,
         paddingTop: Platform.OS === 'ios' ? '20' : 0
     },
     btnResultContainer: {
