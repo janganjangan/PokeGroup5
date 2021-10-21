@@ -1,30 +1,124 @@
-import React from 'react'
-import { Button, SafeAreaView, StyleSheet } from 'react-native'
+import React, { useState } from 'react'
+import {
+    View,
+    Image,
+    TouchableOpacity,
+    Text,
+    StyleSheet,
+    ScrollView,
+    SafeAreaView
+} from 'react-native'
+import { IC_RED_POKEBALL as RedPokeball } from '../assets/index'
 import { useNavigation } from '@react-navigation/core'
 import ScreenName from '../navigation/ScreenName';
 
 const HomeScreen = () => {
 
+    const [pokeballs, setPokeballs] = useState(0)
     const navigation = useNavigation();
 
-    const handleOnPress = () => {
+    const getRandomPokeballs = () => {
+        let result = Math.floor(Math.random() * 10) + 1
+
+        setPokeballs(result)
+    }
+
+    const navigateToPokeballPage = () => {
         navigation.navigate(ScreenName.PokeballScreen, {
-            numOfItems: 1
+            numOfItems: pokeballs
         })
     }
 
+    const styles = StyleSheet.create({
+        button: {
+            backgroundColor: 'red',
+            padding: 16,
+            alignContent: 'center',
+            justifyContent: 'center',
+            borderRadius: 8,
+            marginBottom: 8
+        },
+
+        buttonContent: {
+            color: 'white',
+            textAlign: 'center',
+            fontSize: 16,
+            fontWeight: 'bold'
+        },
+
+        introductionParagraph: {
+            marginBottom: 32,
+            fontSize: 24,
+            fontWeight: 'bold',
+            textAlign: 'center'
+        },
+
+        containerView: {
+            margin: 16,
+            padding: 16,
+            backgroundColor: 'white',
+            borderColor: 'lightgray',
+            borderWidth: 2,
+            borderRadius: 10,
+        },
+
+        pokeBall: {
+            width: 100,
+            height: 100,
+            marginBottom: 16
+        },
+
+        viewPokeballWrapper: {
+            marginTop: 16
+        },
+
+        congratulationsMessage: {
+            fontSize: 18,
+            fontWeight: 'normal',
+            textAlign: 'center',
+            marginBottom: 16
+        }
+    })
+
     return (
-        <SafeAreaView style={styles.container}>
-            <Button title={'Navigate to Pokeball Screen'} onPress={handleOnPress} />
+        <SafeAreaView>
+            <ScrollView>
+                <View style={styles.containerView}>
+                    <Text style={styles.introductionParagraph}>
+                        Hello there, {'\n'}
+                        <Text style={{ fontSize: 18, fontWeight: 'normal' }}>
+                            press the button below to get free pokeballs :D
+                        </Text>
+                    </Text>
+
+                    {
+                        pokeballs > 0 ?
+                            <View style={styles.viewPokeballWrapper}>
+                                <View style={{ alignItems: 'center' }}>
+                                    <Image source={RedPokeball} style={styles.pokeBall} />
+                                </View>
+                                <Text style={styles.congratulationsMessage}>
+                                    Congratulations, you get {pokeballs} pokeball {pokeballs > 1 ? '\'s\n' : '\n'}
+                                Let's open it, shall we ?
+                            </Text>
+
+                                <TouchableOpacity onPress={() => { navigateToPokeballPage() }}>
+                                    <View style={styles.button}>
+                                        <Text style={styles.buttonContent}>Open Pokeballs</Text>
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
+                            : <TouchableOpacity onPress={() => { getRandomPokeballs() }}>
+                                <View style={styles.button}>
+                                    <Text style={styles.buttonContent}>Get Pokeballs</Text>
+                                </View>
+                            </TouchableOpacity>
+                    }
+
+                </View>
+            </ScrollView>
         </SafeAreaView>
     )
 }
 
 export default HomeScreen;
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        paddingTop: Platform.OS === 'ios' ? '20' : 0
-    }
-})

@@ -104,7 +104,6 @@ const styles = StyleSheet.create({
         marginTop: 20,
         flex: 1,
         paddingBottom: 40,
-        paddingTop: Platform.OS === 'ios' ? '20' : 0
     },
     btnResultContainer: {
         borderWidth: 1,
