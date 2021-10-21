@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from 'react'
-import _ from 'lodash';
 import { Button, FlatList, Platform, SafeAreaView, StyleSheet, View } from 'react-native'
+import { useRoute } from '@react-navigation/core';
+import { useNavigation } from '@react-navigation/core'
+import _ from 'lodash';
+
+import ScreenName from '../navigation/ScreenName';
 import { PokemonItem } from '../components';
 import { randomWithRange } from '../utility/RandomUtil';
 import { MINIMUM_POKEBALL_TYPE, MAXIMUM_POKEBALL_TYPE } from '../constants';
-import { useRoute } from '@react-navigation/core';
+
 
 const PokeballScreen = () => {
 
     const route = useRoute();
+    const navigation = useNavigation();
     const [randomNumbers, setRandomNumbers] = useState([]);
     const [btnResultVisibility, setBtnResultVisibility] = useState(false);
 
@@ -32,13 +37,21 @@ const PokeballScreen = () => {
         setBtnResultVisibility(isAllClicked);
     }, [randomNumbers])
 
-    const onPokemonItemClicked = (index) => {
+    const onPokemonItemClicked = (index, pokemonId) => {
         const newRandomNumbersState = _.cloneDeep(randomNumbers);
         newRandomNumbersState[index] = {
             ...newRandomNumbersState[index],
+            pokemonId,
             open: true
         }
         setRandomNumbers(newRandomNumbersState)
+    }
+
+    const goToPokedexScreen = () => {
+        const mappedPokemonIds = randomNumbers.map(item => item.pokemonId);
+        navigation.navigate(ScreenName.PokedexScreen, {
+            listPokemonIds: mappedPokemonIds
+        })
     }
 
     return (
@@ -60,7 +73,12 @@ const PokeballScreen = () => {
                     keyExtractor={(item) => item.id}
                 />
                 {
-                    btnResultVisibility && <Button style={styles.btnResult} title={'View Pokedex'} />
+                    btnResultVisibility &&
+                    <Button
+                        style={styles.btnResult}
+                        title={'View Pokedex'}
+                        onPress={goToPokedexScreen}
+                    />
                 }
             </View>
         </SafeAreaView>

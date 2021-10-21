@@ -30,7 +30,7 @@ const PokemonItem = ({ pokemonType, onPokemonItemClicked, id }) => {
 
     const onPressPokeball = () => {
         setImageUri(POKEMON_IMAGE_WITH_ID(pokemonId))
-        onPokemonItemClicked(id)
+        onPokemonItemClicked(id, pokemonId)
     }
 
     const renderPokemonImage = () => {

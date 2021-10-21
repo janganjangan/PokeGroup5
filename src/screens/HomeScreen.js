@@ -1,6 +1,6 @@
-import { useNavigation } from '@react-navigation/core'
 import React from 'react'
 import { Button, SafeAreaView, StyleSheet } from 'react-native'
+import { useNavigation } from '@react-navigation/core'
 import ScreenName from '../navigation/ScreenName';
 
 const HomeScreen = () => {
