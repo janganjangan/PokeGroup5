@@ -4,13 +4,11 @@ import { View,
         ScrollView,
         SafeAreaView
     } from 'react-native'
-import IntroductionParagraph from './components/HomeScreenComponents/IntroductionParagraph';
-import MainButton from './components/HomeScreenComponents/MainButton';
-import ViewPokeballs from './components/HomeScreenComponents/ViewPokeballs';
+import { IntroductionParagraph, MainButton, ViewPokeballs } from '../components/HomeScreenComponents';
+import ScreenName from '../navigation/ScreenName';
 
 const HomeScreen = ({ navigation }) => {
     const [pokeballs, setPokeballs] = useState(0)
-    const navigation = useNavigation();
 
     const getRandomPokeballs = () => {
         let result = Math.floor(Math.random() * 10) + 1
@@ -23,17 +21,6 @@ const HomeScreen = ({ navigation }) => {
             numOfItems: pokeballs
         })
     }
-
-    const styles = StyleSheet.create({
-        containerView: {
-            margin: 16,
-            padding: 16,
-            backgroundColor: 'white',
-            borderColor: 'lightgray',
-            borderWidth: 2,
-            borderRadius: 10,
-        }
-    })
 
     return (
         <SafeAreaView>
@@ -52,3 +39,14 @@ const HomeScreen = ({ navigation }) => {
 }
 
 export default HomeScreen;
+
+const styles = StyleSheet.create({
+    containerView: {
+        margin: 16,
+        padding: 16,
+        backgroundColor: 'white',
+        borderColor: 'lightgray',
+        borderWidth: 2,
+        borderRadius: 10,
+    }
+})

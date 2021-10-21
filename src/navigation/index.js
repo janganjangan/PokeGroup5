@@ -3,7 +3,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import ScreenName from './ScreenName';
-
 import HomeScreen from '../screens/HomeScreen'
 import PokeballScreen from '../screens/PokeballScreen'
 import PokedexScreen from '../screens/PokedexScreen';
