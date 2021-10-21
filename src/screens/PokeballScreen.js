@@ -35,7 +35,9 @@ const PokeballScreen = () => {
 
     useEffect(() => {
         const isAllClicked = randomNumbers.every(x => x.open);
-        setBtnResultVisibility(isAllClicked);
+        setTimeout(() => {
+            setBtnResultVisibility(isAllClicked);
+        }, 500)
     }, [randomNumbers])
 
     const onPokemonItemClicked = (index, pokemonId) => {
