@@ -1,0 +1,1 @@
+export const IC_RED_POKEBALL = require('./ic-red-pokeball.png'); 
