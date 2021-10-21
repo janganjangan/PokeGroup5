@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import _ from 'lodash';
 import { Button, FlatList, Platform, SafeAreaView, StyleSheet, View } from 'react-native'
 import { PokemonItem } from '../components';
 import { randomWithRange } from '../utility/RandomUtil';
@@ -19,11 +20,26 @@ const PokeballScreen = () => {
             const randomNumber = randomWithRange(MINIMUM_POKEBALL_TYPE, MAXIMUM_POKEBALL_TYPE)
             numbers.push({
                 id: i,
-                value: randomNumber
+                value: randomNumber,
+                open: false
             });
         }
         setRandomNumbers(numbers);
     }, []);
+
+    useEffect(() => {
+        const isAllClicked = randomNumbers.every(x => x.open);
+        setBtnResultVisibility(isAllClicked);
+    }, [randomNumbers])
+
+    const onPokemonItemClicked = (index) => {
+        const newRandomNumbersState = _.cloneDeep(randomNumbers);
+        newRandomNumbersState[index] = {
+            ...newRandomNumbersState[index],
+            open: true
+        }
+        setRandomNumbers(newRandomNumbersState)
+    }
 
     return (
         <SafeAreaView style={styles.container}>
@@ -32,11 +48,20 @@ const PokeballScreen = () => {
                     data={randomNumbers}
                     numColumns={2}
                     renderItem={({ item }) => {
-                        return <PokemonItem pokemonType={item.value} key={item.id} />
+                        return (
+                            <PokemonItem
+                                key={item.id}
+                                pokemonType={item.value}
+                                id={item.id}
+                                onPokemonItemClicked={onPokemonItemClicked}
+                            />
+                        )
                     }}
                     keyExtractor={(item) => item.id}
                 />
-                <Button style={styles.btnResult} title={'View Pokedex'} />
+                {
+                    btnResultVisibility && <Button style={styles.btnResult} title={'View Pokedex'} />
+                }
             </View>
         </SafeAreaView>
     )

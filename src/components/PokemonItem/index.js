@@ -8,7 +8,7 @@ import {
 import { randomWithRange } from '../../utility/RandomUtil';
 import { Pokeball, Greatball, Ultraball } from '../';
 
-const PokemonItem = ({ pokemonType }) => {
+const PokemonItem = ({ pokemonType, onPokemonItemClicked, id }) => {
 
     const [pokemonId, setPokemonId] = useState(0);
     const [imageUri, setImageUri] = useState('');
@@ -28,7 +28,10 @@ const PokemonItem = ({ pokemonType }) => {
         setPokemonId(randomPokemonId);
     }, []);
 
-    const onPressPokeball = () => setImageUri(POKEMON_IMAGE_WITH_ID(pokemonId))
+    const onPressPokeball = () => {
+        setImageUri(POKEMON_IMAGE_WITH_ID(pokemonId))
+        onPokemonItemClicked(id)
+    }
 
     const renderPokemonImage = () => {
         return (
