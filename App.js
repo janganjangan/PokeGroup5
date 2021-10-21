@@ -26,7 +26,7 @@ const App = () => {
   return (
     <SafeAreaView>
       <NavigationContainer>
-        <HomeScreen numOfItems={5} />
+        <HomeScreen />
       </NavigationContainer>
     </SafeAreaView>
   );
