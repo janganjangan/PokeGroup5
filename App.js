@@ -7,23 +7,17 @@
  */
 
 import React from 'react';
-import type { Node } from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import HomeScreen from './src/screens/HomeScreen';
-import PokeballsScreen from './src/screens/PokeballsScreen'
+import {
+  SafeAreaView,
+} from 'react-native';
+import RouteNavigation from './src/navigation';
 
-const App: () => Node = () => {
-  const Stack = createNativeStackNavigator();
+const App = () => {
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Home" component={ HomeScreen } />
-        <Stack.Screen name="Details" component={ HomeScreen } />
-        <Stack.Screen name="OpenPokeballs" component={ PokeballsScreen } />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <SafeAreaView style={{ flex: 1 }}>
+      <RouteNavigation />
+    </SafeAreaView>
   );
 };
 
