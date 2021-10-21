@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import { FlatList, SafeAreaView, StyleSheet, Platform } from 'react-native'
+import { Button, FlatList, Platform, SafeAreaView, StyleSheet, View } from 'react-native'
 import { PokemonItem } from '../components';
 import { randomWithRange } from '../utility/RandomUtil';
 import { MINIMUM_POKEBALL_TYPE, MAXIMUM_POKEBALL_TYPE } from '../constants';
+import { useRoute } from '@react-navigation/core';
 
-const PokeballScreen = ({ numOfItems }) => {
+const PokeballScreen = () => {
 
+    const route = useRoute();
     const [randomNumbers, setRandomNumbers] = useState([]);
+    const [btnResultVisibility, setBtnResultVisibility] = useState(false);
+
+    const { numOfItems } = route.params;
 
     useEffect(() => {
         const numbers = [];
@@ -22,14 +27,17 @@ const PokeballScreen = ({ numOfItems }) => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <FlatList
-                data={randomNumbers}
-                numColumns={2}
-                renderItem={({ item }) => {
-                    return <PokemonItem pokemonType={item.value} key={item.id} />
-                }}
-                keyExtractor={(item) => item.id}
-            />
+            <View>
+                <FlatList
+                    data={randomNumbers}
+                    numColumns={2}
+                    renderItem={({ item }) => {
+                        return <PokemonItem pokemonType={item.value} key={item.id} />
+                    }}
+                    keyExtractor={(item) => item.id}
+                />
+                <Button style={styles.btnResult} title={'View Pokedex'} />
+            </View>
         </SafeAreaView>
     )
 }
@@ -40,5 +48,8 @@ const styles = StyleSheet.create({
     container: {
         marginTop: 20,
         paddingTop: Platform.OS === 'ios' ? '20' : 0
+    },
+    btnResult: {
+        position: 'absolute'
     }
 })

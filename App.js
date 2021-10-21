@@ -7,27 +7,16 @@
  */
 
 import React from 'react';
-import { Node } from 'react';
 import {
   SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
 } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import HomeScreen from './src/screens/HomeScreen';
+import RouteNavigation from './src/navigation';
 
 const App = () => {
 
   return (
-    <SafeAreaView>
-      <NavigationContainer>
-        <HomeScreen />
-      </NavigationContainer>
+    <SafeAreaView style={{ flex: 1 }}>
+      <RouteNavigation />
     </SafeAreaView>
   );
 };

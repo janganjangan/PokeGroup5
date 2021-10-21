@@ -1,28 +1,40 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, TouchableOpacity, Image } from 'react-native';
-import { GREATBALL_TYPE, ULTRABALL_TYPE } from '../../constants';
+import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
+import {
+    GREATBALL_TYPE,
+    ULTRABALL_TYPE,
+    POKEMON_IMAGE_WITH_ID
+} from '../../constants';
 import { randomWithRange } from '../../utility/RandomUtil';
 import { Pokeball, Greatball, Ultraball } from '../';
 
 const PokemonItem = ({ pokemonType }) => {
 
     const [pokemonId, setPokemonId] = useState(0);
-    const [loading, setLoading] = useState(true);
+    const [imageUri, setImageUri] = useState('');
 
     useEffect(() => {
         let randomPokemonId = 0;
         switch (pokemonType) {
             case GREATBALL_TYPE:
-                randomPokemonId = randomWithRange(101, 200);
+                randomPokemonId = randomWithRange(101, 201);
                 break;
             case ULTRABALL_TYPE:
-                randomPokemonId = randomWithRange(201, 300);
+                randomPokemonId = randomWithRange(201, 301);
                 break;
             default:
-                randomPokemonId = randomWithRange(1, 100);
+                randomPokemonId = randomWithRange(1, 101);
         }
         setPokemonId(randomPokemonId);
     }, []);
+
+    const onPressPokeball = () => setImageUri(POKEMON_IMAGE_WITH_ID(pokemonId))
+
+    const renderPokemonImage = () => {
+        return (
+            <Image style={styles.image} source={{ uri: imageUri }} />
+        )
+    }
 
     const renderPokeball = () => {
         switch (pokemonType) {
@@ -36,11 +48,16 @@ const PokemonItem = ({ pokemonType }) => {
     }
 
     return (
-        <TouchableOpacity style={styles.container}>
-            {/* <Animated.View style={[{ transform: [{ translateY: animated }] }]}> */}
-            {renderPokeball()}
-            {/* </Animated.View> */}
-        </TouchableOpacity>
+        <View style={styles.container}>
+            {
+                imageUri !== '' ? renderPokemonImage() :
+                    <TouchableOpacity
+                        onPress={onPressPokeball}
+                    >
+                        {renderPokeball()}
+                    </TouchableOpacity>
+            }
+        </View>
     )
 }
 
@@ -52,5 +69,9 @@ const styles = StyleSheet.create({
         flex: 1 / 2,
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    image: {
+        width: 100,
+        height: 100,
     }
 })
