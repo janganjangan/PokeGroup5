@@ -1,11 +1,11 @@
 # PokeGroup5
 Untuk Tugas Kelompok Group 5
 # a.	Nama anggota kelompok, user github/gitlab dan pembagian tugas (fitur apa yang dikerjakan)
-#     -Home => Philip Indra Prayitno
-#     -PokeBall => Victor
-#     -PokeDex => Mayliana
-#     -Evolution => Hawari Al Malik 
-#     -View Detail Evolution => Danis Dwi Prasetyanto
+#     -Home => Philip Indra Prayitno => "S1rent"
+#     -PokeBall => Victor =>"victorang1"
+#     -PokeDex => Mayliana => "janganjangan"
+#     -Evolution => Hawari Al Malik=> "LOLagger474"
+#     -View Detail Evolution => Danis Dwi Prasetyanto =>"danisdwip"
     
 # b.	Penjelasan singkat mengenai aplikasi (seperti fungsi dan tujuan, fitur, third-parties yang digunakan, credit atas resource yang digunakan)
 #     -API menggunakan source dari https://pokeapi.co/
