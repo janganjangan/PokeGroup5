@@ -3,4 +3,5 @@ export default {
     PokeballScreen: "PokeballScreen",
     PokedexScreen: "PokedexScreen",
     EvolutionScreen: "EvolutionScreen",
+    EvolutionDetailScreen: "EvolutionDetailScreen"
 }

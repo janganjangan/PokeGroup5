@@ -7,6 +7,7 @@ import HomeScreen from '../screens/HomeScreen'
 import PokeballScreen from '../screens/PokeballScreen'
 import PokedexScreen from '../screens/PokedexScreen';
 import EvolutionScreen from '../screens/EvolutionScreen';
+import EvolutionDetailScreen from '../screens/EvolutionDetailScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -18,6 +19,7 @@ export default function RouteNavigation() {
                 <Stack.Screen name={ScreenName.PokeballScreen} component={PokeballScreen} />
                 <Stack.Screen name={ScreenName.PokedexScreen} component={PokedexScreen} />
                 <Stack.Screen name={ScreenName.EvolutionScreen} component={EvolutionScreen} />
+                <Stack.Screen name={ScreenName.EvolutionDetailScreen} component={EvolutionDetailScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     );
