@@ -1,14 +1,20 @@
-import React, { useState } from 'react'
-import { View,
-        StyleSheet, 
-        ScrollView,
-        SafeAreaView
-    } from 'react-native'
+import React, { useState, useEffect } from 'react'
+import {
+    View,
+    StyleSheet,
+    ScrollView,
+    SafeAreaView,
+} from 'react-native'
 import { IntroductionParagraph, MainButton, ViewPokeballs } from '../components/HomeScreenComponents';
+import { MyPokemonIconButton } from '../components';
 import ScreenName from '../navigation/ScreenName';
 
 const HomeScreen = ({ navigation }) => {
     const [pokeballs, setPokeballs] = useState(0)
+
+    useEffect(() => {
+        navigation.setOptions({ headerRight: () => <MyPokemonIconButton /> });
+    }, [])
 
     const getRandomPokeballs = () => {
         let result = Math.floor(Math.random() * 10) + 1
@@ -25,12 +31,12 @@ const HomeScreen = ({ navigation }) => {
     return (
         <SafeAreaView>
             <ScrollView>
-                <View style={ styles.containerView }>
-                    <IntroductionParagraph/>
+                <View style={styles.containerView}>
+                    <IntroductionParagraph />
                     {
-                        pokeballs > 0 ? 
-                        <ViewPokeballs handler={ navigateToPokeballPage } pokeballs={ pokeballs } />
-                        : <MainButton description="Get Pokeballs" handler={ getRandomPokeballs } />
+                        pokeballs > 0 ?
+                            <ViewPokeballs handler={navigateToPokeballPage} pokeballs={pokeballs} />
+                            : <MainButton description="Get Pokeballs" handler={getRandomPokeballs} />
                     }
                 </View>
             </ScrollView>

@@ -2,19 +2,21 @@ import React from 'react';
 import {
   SafeAreaView,
 } from 'react-native';
+import { Provider } from 'react-redux'
+import { PersistGate } from 'redux-persist/lib/integration/react';
+import { store, persistor } from './src/store';
 import RouteNavigation from './src/navigation';
 
 const App = () => {
 
-  const renderItem = ({ item }) => (
-    <Item imgUri={item.imgUri} idx={item.id}/>
-  );
- 
- 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <RouteNavigation />
-    </SafeAreaView>
+    <Provider store={store}>
+      <PersistGate persistor={persistor}>
+        <SafeAreaView style={{ flex: 1 }}>
+          <RouteNavigation />
+        </SafeAreaView>
+      </PersistGate>
+    </Provider>
   );
 }
 
