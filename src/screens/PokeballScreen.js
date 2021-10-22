@@ -103,8 +103,6 @@ const PokeballScreen = () => {
     )
 }
 
-export default PokeballScreen
-
 const styles = StyleSheet.create({
     container: {
         marginTop: 20,
@@ -129,3 +127,6 @@ const styles = StyleSheet.create({
         color: '#fff'
     }
 })
+
+export default PokeballScreen
+
