@@ -7,6 +7,7 @@ import _ from 'lodash';
 
 import ScreenName from '../navigation/ScreenName';
 import { PokemonItem } from '../components';
+import { POKEMON_IMAGE_WITH_ID } from '../constants';
 import { randomWithRange } from '../utility/RandomUtil';
 import { MINIMUM_POKEBALL_TYPE, MAXIMUM_POKEBALL_TYPE } from '../constants';
 
@@ -51,7 +52,12 @@ const PokeballScreen = () => {
     }
 
     const goToPokedexScreen = () => {
-        const mappedPokemonIds = randomNumbers.map(item => item.pokemonId);
+        const mappedPokemonIds = randomNumbers.map(item => {
+            return {
+                id: item.pokemonId,
+                imageUri: POKEMON_IMAGE_WITH_ID(item.pokemonId)
+            }
+        });
         navigation.dispatch(CommonActions.reset({
             index: 1,
             routes: [
