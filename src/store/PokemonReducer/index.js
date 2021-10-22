@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { uniqueArray } from '../../utility/ArrayUtil';
 
 const initialState = {
     pokemonIds: []
@@ -9,7 +10,7 @@ export const pokemonSlice = createSlice({
     initialState,
     reducers: {
         putPokemonIds: (state, action) => {
-            const pokemonSets = new Set([...state.pokemonIds, ...action.payload]);
+            const pokemonSets = uniqueArray([...state.pokemonIds, ...action.payload]);
             state.pokemonIds = Array.from(pokemonSets);
         },
     },
