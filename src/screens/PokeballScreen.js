@@ -3,6 +3,7 @@ import { FlatList, Platform, StyleSheet, View, TouchableOpacity, Text } from 're
 import { useRoute } from '@react-navigation/core';
 import { useNavigation } from '@react-navigation/core'
 import { CommonActions } from '@react-navigation/native';
+import { useDispatch } from 'react-redux';
 import _ from 'lodash';
 
 import ScreenName from '../navigation/ScreenName';
@@ -10,12 +11,14 @@ import { PokemonItem } from '../components';
 import { POKEMON_IMAGE_WITH_ID } from '../constants';
 import { randomWithRange } from '../utility/RandomUtil';
 import { MINIMUM_POKEBALL_TYPE, MAXIMUM_POKEBALL_TYPE } from '../constants';
+import { putPokemonIds } from '../store/PokemonReducer';
 
 
 const PokeballScreen = () => {
 
     const route = useRoute();
     const navigation = useNavigation();
+    const dispatch = useDispatch();
     const [randomNumbers, setRandomNumbers] = useState([]);
     const [btnResultVisibility, setBtnResultVisibility] = useState(false);
 
@@ -38,7 +41,7 @@ const PokeballScreen = () => {
         const isAllClicked = randomNumbers.every(x => x.open);
         setTimeout(() => {
             setBtnResultVisibility(isAllClicked);
-        }, 500)
+        }, 200)
     }, [randomNumbers])
 
     const onPokemonItemClicked = (index, pokemonId) => {
@@ -58,6 +61,7 @@ const PokeballScreen = () => {
                 imageUri: POKEMON_IMAGE_WITH_ID(item.pokemonId)
             }
         });
+        dispatch(putPokemonIds(mappedPokemonIds));
         navigation.dispatch(CommonActions.reset({
             index: 1,
             routes: [
@@ -67,7 +71,8 @@ const PokeballScreen = () => {
                 {
                     name: ScreenName.PokedexScreen,
                     params: {
-                        listPokemonIds: mappedPokemonIds
+                        listPokemonIds: mappedPokemonIds,
+                        type: 'new'
                     }
                 }
             ]
@@ -96,7 +101,7 @@ const PokeballScreen = () => {
             {
                 btnResultVisibility &&
                 <TouchableOpacity activeOpacity={.5} style={styles.btnResultContainer} onPress={goToPokedexScreen}>
-                    <Text style={styles.textResult}>View Pokedex</Text>
+                    <Text style={styles.textResult}>Save &amp; View Pokedex</Text>
                 </TouchableOpacity>
             }
         </View>
@@ -114,7 +119,7 @@ const styles = StyleSheet.create({
         borderColor: 'rgba(0,0,0,0.2)',
         alignItems: 'center',
         justifyContent: 'center',
-        width: 150,
+        width: 200,
         position: 'absolute',
         bottom: 16,
         right: 16,
