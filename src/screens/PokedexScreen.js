@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, StyleSheet, View, FlatList} from 'react-native';
+import {ScrollView, Text, StyleSheet, View, FlatList} from 'react-native';
 import { useRoute } from '@react-navigation/core';
 import PokeImage from '../components/PokeImage';
 import PokeProperties from '../components/PokeProperties';
@@ -27,23 +27,25 @@ import PokeProperties from '../components/PokeProperties';
 //   }
 // ];
 
-const Item = ({ imgUri,idx }) => {
-  return (
-    <View style={css.list}>
-        <PokeImage imageUri= {imgUri}/>
-        <PokeProperties index={idx} />
-    </View>
-  );
-}
+
 
 const PokedexScreen = () => {
 
     const route = useRoute();
+
+    const Item = ({ imgUri,idx }) => {
+      return (
+        <View style={css.list}>
+            <PokeImage imageUri= {imgUri}/>
+            <PokeProperties index={idx} />
+        </View>
+      );
+    }
     
     const renderItem = ({ item }) => (
       <Item imgUri={item.imageUri} idx={item.id}/>
     );
-   
+
     return (
         <View>
             <View>

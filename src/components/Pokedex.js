@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, FlatList, Text, View, StyleSheet } from 'react-native';
+import { ActivityIndicator, FlatList, Text, View, StyleSheet,TouchableOpacity } from 'react-native';
+import { useRoute } from '@react-navigation/core';
+import { useNavigation } from '@react-navigation/core'
+import ScreenName from '../navigation/ScreenName';
 
 const Pokedex=(props)=>{
   
   const [data, setData] = useState([]);
+  const navigation = useNavigation();
 
   const getPoke = async () => {
 
@@ -24,12 +28,21 @@ const Pokedex=(props)=>{
     getPoke();
   }, []);
 
+  
+
+  const goToEvolutionPage = () => {
+    navigation.navigate(ScreenName.EvolutionScreen, {
+        idPoke: props.ids
+    })
+}
+
+
   return (
         <View style={{padding:10}}>
+
           <Text style={css.caption}>{data.name}</Text>
           <Text style={css.property}>Weight: {data.weight}</Text>
           <Text style={css.property}>Base Exp: {data.base_experience}</Text>
-         
           <FlatList
             data={data.types}
             keyExtractor={({ id }, index) => id}
@@ -37,6 +50,9 @@ const Pokedex=(props)=>{
               <Text style={css.property}>{item.type.name}</Text>
             )}
           />
+          <TouchableOpacity style={css.property} onPress={goToEvolutionPage}>
+            <Text style={css.evo}>Evolution</Text>
+          </TouchableOpacity>
 
         </View>
   );
@@ -52,6 +68,12 @@ const css=StyleSheet.create({
   property:{
     fontSize:15,
     padding:5
+  },
+
+  evo:{
+    color: 'blue',
+    fontWeight:'bold',
+    fontSize:20
   }
 })
 
