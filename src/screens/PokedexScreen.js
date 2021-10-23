@@ -76,14 +76,19 @@ const css = StyleSheet.create({
     alignItems: 'center',
     marginTop: 20,
     borderWidth: 3,
-    borderColor: "blue"
+    borderColor: "blue",
+    borderRadius: 10,
+    margin: 8,
+    padding: 8
   },
   header: {
     fontSize: 25,
     fontWeight: 'bold',
     letterSpacing: 10,
     marginTop: 20,
-    color: '#a3842e'
+    color: '#a3842e',
+    margin: 8,
+    padding: 8
   },
   smallHeader: {
     fontSize: 20
