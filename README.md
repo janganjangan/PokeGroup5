@@ -9,6 +9,7 @@ Untuk Tugas Kelompok Group 5
     
 # b.	Penjelasan singkat mengenai aplikasi (seperti fungsi dan tujuan, fitur, third-parties yang digunakan, credit atas resource yang digunakan)
 #     -API menggunakan source dari https://pokeapi.co/
+#     -Image Pokeballs: https://www.freepik.com/free-icon/ultra-ball_14099949.htm & https://www.freeiconspng.com/images/pokeball-png & API https://pokeapi.co/
 #     -Aplikasi berupa games menangkap Pokemon berdasarkan PokeBall yang berhasil didapat oleh User
 #    -Di HomeScreen user akan mengklik Button "Get PokeBalls" dan akan dirandom berapa PokeBall yang berhasil didapatkan dan Tipe PokeBallnya
 #     -Di Halaman PokeBall akan ditampilkan Koleksi PokeBalls yang berhasil didapatkan, Lalu user akan membuka satu2 PokeBall tersebut dan akan muncul Pokemon random
