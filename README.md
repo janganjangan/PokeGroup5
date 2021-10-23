@@ -1,8 +1,8 @@
 # PokeGroup5
 Untuk Tugas Kelompok Group 5
 # a.	Nama anggota kelompok, user github/gitlab dan pembagian tugas (fitur apa yang dikerjakan)
-#     -Home => Philip Indra Prayitno => "S1rent"
-#     -PokeBall => Victor =>"victorang1"
+#     -Home & Assets => Philip Indra Prayitno => "S1rent"
+#     -PokeBall & Assets => Victor =>"victorang1"
 #     -PokeDex => Mayliana => "janganjangan"
 #     -Evolution => Hawari Al Malik=> "LOLagger474"
 #     -View Detail Evolution => Danis Dwi Prasetyanto =>"danisdwip"
