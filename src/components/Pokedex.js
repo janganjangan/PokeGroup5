@@ -3,6 +3,7 @@ import { ActivityIndicator, FlatList, Text, View, StyleSheet,TouchableOpacity } 
 import { useRoute } from '@react-navigation/core';
 import { useNavigation } from '@react-navigation/core'
 import ScreenName from '../navigation/ScreenName';
+import { POKE_API_BASE_URL } from '../constants'
 
 const Pokedex=(props)=>{
   
@@ -11,7 +12,7 @@ const Pokedex=(props)=>{
 
   const getPoke = async () => {
 
-    const baseURL=`https://pokeapi.co/api/v2/pokemon/${props.ids}`;
+    const baseURL=`${POKE_API_BASE_URL}/pokemon/${props.ids}`;
 
      try {
       const response = await fetch(baseURL);
